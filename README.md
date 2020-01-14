@@ -6,50 +6,40 @@
 
 ### 進入GCP平台
 
+![alt text](gcp-1.png "gcp-1")
 登入[GCP](https://cloud.google.com/gcp)，註冊或登入帳號，並且進入主控台。
 
-![alt text](gcp-1.png "gcp-1")
 
 ### 申請GPU配額 (若已有申請過可跳過)
 
+![alt text](gcp-2.png "gcp-2")
 點選左上角導覽選單，選取「IAM與管理員」的「配額」。
 
-![alt text](gcp-2.png "gcp-2")
-
-
+![alt text](gcp-3.png "gcp-3")
 1. 指標選擇GPUs(all regions)
 2. 將其打勾
 3. 點選編輯配額
 4. 輸入基本資料並且按下一步
 
-![alt text](gcp-3.png "gcp-3")
-
-
 新增的配額限制按照官方限制填5~10皆可，要求說明可以寫ML project就好，點選完成，提交要求。
-
 
 ## 創建VM
 
+![alt text](gcp-4.png "gcp-4")
 在左邊的側邊欄選取Marketplace，並且搜尋 "Deep Learning VM"，並且點選在COMPUTE ENGINE上啟動
 
-![alt text](gcp-4.png "gcp-4")
 
-
+![alt text](gcp-5.png "gcp-5")
 接下來要進行設定，基本上只需要更改Framework
 1. 為了符合Tensorflow 1.12，選擇CUDA 9.0的版本（Intel(R) optimized Base (with Intel(R) MKL and CUDA 9.0)）
 2. 勾選安裝NVIDIA GPU driver
 3. 點選部署
 
-![alt text](gcp-5.png "gcp-5")
-
-
+![alt text](gcp-6.png "gcp-6")
 警告的話是有資源即將被棄用，不過現在運行是ok的。
 接下來就是左邊側欄點選Compute Engine，VM 執行個體，然後點選SSH連接VM。
 
-![alt text](gcp-6.png "gcp-6")
-
 ![alt text](gcp-7.png "gcp-7")
-
 進入的成功畫面
 
 ## 建立 XServer
