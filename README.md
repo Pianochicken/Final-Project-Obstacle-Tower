@@ -274,7 +274,7 @@ gin_files 則是 rainbow_otc.gin 的路徑。
 每完成一段訓練後，就會在base_dir所設定的路徑產生許多checkpoint檔案
 
 ### 從 Tensorboard 監控訓練狀況
-首先，若要監控訓練狀況，需再去編輯VM，於網路介面的外部IP中，建立IP位址。
+首先，若要監控訓練狀況，需再去編輯創立的VM，於網路介面的外部IP中，選擇建立IP位址。
 
 設定完將 Port 開放後，即可在terminal上輸入已下指令來運行Tensorboard
 
@@ -286,7 +286,7 @@ tensorboard --logdir=/tmp/dopamine
 
 ![alt text](gcp-15.png "gcp-15")
 
-可從此處看到外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006
+可從VM執行個體的地方，看到目前VM的外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006（xx為外部ip）
 就可看到Tensorboard的狀況囉！
 
 ![alt text](./examples/images/gcp_tensorboard.png "Tensorboard")
