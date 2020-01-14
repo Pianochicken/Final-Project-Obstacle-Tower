@@ -13,6 +13,7 @@
 ### 申請GPU配額 (若已有申請過可跳過)
 
 ![alt text](gcp-2.png "gcp-2")
+
 點選左上角導覽選單，選取「IAM與管理員」的「配額」。
 
 ![alt text](gcp-3.png "gcp-3")
@@ -40,7 +41,7 @@
 接下來就是左邊側欄點選Compute Engine，VM 執行個體，然後點選SSH連接VM。
 
 ![alt text](gcp-7.png "gcp-7")
-進入的成功畫面
+看到這就代表成功進入囉！
 
 ## 建立 XServer
 要渲染 Obstacle Tower 環境，需要安裝XServer，以便在運行障礙塔時GPU可以渲染。
@@ -288,7 +289,7 @@ tensorboard --logdir=/tmp/dopamine
 可從此處看到外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006
 就可看到Tensorboard的狀況囉！
 
-![alt text](./images/gcp_tensorboard.png "Tensorboard")
+![alt text](./examples/images/gcp_tensorboard.png "Tensorboard")
 
 
 ## Part 2 本機端運行主程式：
