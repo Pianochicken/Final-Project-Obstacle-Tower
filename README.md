@@ -273,7 +273,7 @@ pip3 install -e .
 
 使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。
 
-在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中
+在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中，
 但目前尚不知道該如何將這個訓練完的模型應用在本機端執行...
 
 
