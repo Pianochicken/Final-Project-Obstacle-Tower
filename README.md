@@ -275,9 +275,9 @@ pip3 install -e .
 
 在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中
 但目前尚不知道該如何將這個訓練完的模型應用在本機端執行...
-　
-　
- 　
+
+
+
 原始文件可參考：
 https://github.com/Unity-Technologies/obstacle-tower-env
 https://github.com/Unity-Technologies/obstacle-tower-env/blob/master/examples/gcp_training.md
