@@ -2,7 +2,7 @@
 
 ![alt text](banner.jpg "Obstacle Tower")
 
-### Part  在GCP雲端平台進行訓練
+### Part 1 在GCP雲端平台進行訓練
 
 ## 進入GCP平台
 
