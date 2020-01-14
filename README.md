@@ -27,7 +27,7 @@
 ## 創建VM
 
 ![alt text](gcp-4.png "gcp-4")
-在左邊的側邊欄選取Marketplace，並且搜尋 "Deep Learning VM"，並且點選在COMPUTE ENGINE上啟動
+在左邊的側邊欄選取Marketplace，搜尋 "Deep Learning VM"，再點選 "在COMPUTE ENGINE上啟動"。
 
 
 ![alt text](gcp-5.png "gcp-5")
