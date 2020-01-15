@@ -35,10 +35,20 @@
 1. 為了符合Tensorflow 1.12，選擇CUDA 9.0的版本（Intel(R) optimized Base (with Intel(R) MKL and CUDA 9.0)）
 2. 勾選安裝NVIDIA GPU driver
 3. 點選部署
-
-![alt text](gcp-6.png "gcp-6")
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
-等待部屬完畢後，左邊導覽選單點選Compute Engine，VM 執行個體，然後點選SSH連接VM。
+
+![alt text](gcp-6-1.png "gcp-6-1")  
+等待部屬完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，
+再如圖點選VM，並按編輯，在網路介面中點選icon進行修改，將外部IP從臨時改為「建立IP位址」，
+其他維持不變，名稱隨意命名皆可，接著點選保留
+
+![alt text](gcp-6-2.png "gcp-6-2")  
+另外，為使用後續的tensorboard，需要開port突破防火牆，在下方找到網路標記的地方
+如下圖一樣，輸入 "default-allow-internal"
+改完這兩項後，到最底下點選儲存，再接著回到VM執行個體。
+
+![alt text](gcp-6-3.png "gcp-6-3")
+再如上圖點選SSH連接VM。
 
 ![alt text](gcp-7.png "gcp-7")
 看到這就代表成功進入囉！
