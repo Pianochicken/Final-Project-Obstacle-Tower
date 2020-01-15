@@ -334,11 +334,11 @@ pip install -e .
 並將檔案放入example內，再使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。    
 
 在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中，          
-但在研究許多文獻或分享之後，目前還是不知道該如何將這個訓練完的模型應用在本機端執行...    
+但在研究許多文獻或分享之後，目前還是不知道該如何將這個訓練完的模型應用在本機端執行...  
 我訓練好的checkpoint檔案 https://docs.google.com/uc?export=download&id=1vrMe4oAtr4zjlVA6-jpS0vAKX3VaLIHM   
-　
- -
-　
+
+--
+
 原始文件可參考：         
 https://github.com/Unity-Technologies/obstacle-tower-env
 https://github.com/Unity-Technologies/obstacle-tower-env/blob/master/examples/gcp_training.md
