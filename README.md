@@ -1,22 +1,22 @@
 # Final Project Obstacle Tower
 
-![alt text](banner.jpg "Obstacle Tower")
+![alt text](image/banner.jpg "Obstacle Tower")
 
 ## Part 1 在GCP雲端平台進行訓練
 
 ### 進入GCP平台
 
-![alt text](gcp-1.png "gcp-1")
+![alt text](image/gcp-1.png "gcp-1")
 登入[GCP](https://cloud.google.com/gcp)，註冊或登入帳號，並且進入主控台。
 
 
 ### 申請GPU配額 (若已有申請過可跳過)
 
-![alt text](gcp-2.png "gcp-2")
+![alt text](image/gcp-2.png "gcp-2")
 
 點選左上角導覽選單，選取「IAM與管理員」的「配額」。
 
-![alt text](gcp-3.png "gcp-3")
+![alt text](image/gcp-3.png "gcp-3")
 1. 指標選擇GPUs(all regions)
 2. 將其打勾
 3. 點選編輯配額
@@ -26,31 +26,31 @@
 
 ## 創建VM
 
-![alt text](gcp-4.png "gcp-4")
+![alt text](image/gcp-4.png "gcp-4")
 在左邊的側邊欄選取Marketplace，搜尋 "Deep Learning VM"，再點選 "在COMPUTE ENGINE上啟動"。
 
 
-![alt text](gcp-5.png "gcp-5")
+![alt text](image/gcp-5.png "gcp-5")
 接下來要進行設定，基本上只需要更改Framework
 1. 我們選擇（TensorFlow Enterprise 1.15）
 2. 勾選安裝NVIDIA GPU driver
 3. 點選部署
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
 
-![alt text](gcp-6-1.png "gcp-6-1")  
+![alt text](image/gcp-6-1.png "gcp-6-1")  
 等待部屬完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，
 再如圖點選VM，並按編輯，在網路介面中點選icon進行修改，將外部IP從臨時改為「建立IP位址」，
 其他維持不變，名稱隨意命名皆可，接著點選保留
 
-![alt text](gcp-6-2.png "gcp-6-2")  
+![alt text](image/gcp-6-2.png "gcp-6-2")  
 另外，為使用後續的tensorboard，需要開port突破防火牆，在下方找到網路標記的地方
 如下圖一樣，輸入 "default-allow-internal"
 改完這兩項後，到最底下點選儲存，再接著回到VM執行個體。
 
-![alt text](gcp-6-3.png "gcp-6-3")
+![alt text](image/gcp-6-3.png "gcp-6-3")
 再如上圖點選SSH連接VM。
 
-![alt text](gcp-7.png "gcp-7")
+![alt text](image/gcp-7.png "gcp-7")
 看到這就代表成功進入囉！
 
 ## 建立 XServer
@@ -64,7 +64,7 @@ sudo apt update
 sudo apt install -y xserver-xorg mesa-utils
 ```
 
-![alt text](gcp-8.png "gcp-8")
+![alt text](image/gcp-8.png "gcp-8")
 
 遇到這個情況時，直接按Enter即可。   
    
@@ -81,7 +81,7 @@ nvidia-xconfig --query-gpu-info
 
 這將為特定的VM和GPU提供PCI訊息。找到讀取PCI BusID的那一行。
 
-![alt text](gcp-9.png "gcp-9")
+![alt text](image/gcp-9.png "gcp-9")
 
 
 接下來要針對 xorg.conf 進行修改。
@@ -98,12 +98,12 @@ vim /etc/X11/xorg.conf
 按 i 即可輸入修改。
 
 在 Section Device 中增加BusID，改成如下圖所示
-![alt text](gcp-10.png "gcp-10")
+![alt text](image/gcp-10.png "gcp-10")
 
 接著將 Section "ServerLayout" & "Screen" 這兩段地方註解掉，如下圖
 
-![alt text](gcp-11.png "gcp-11")
-![alt text](gcp-12.png "gcp-12")
+![alt text](image/gcp-11.png "gcp-11")
+![alt text](image/gcp-12.png "gcp-12")
 
 修改完後按 ESC，然後輸入":wq"儲存離開。
 
@@ -124,7 +124,7 @@ nvidia-smi
 
 應該會看到Xorg正在你的GPU上運行。
 
-![alt text](gcp-13.png "gcp-13")     
+![alt text](image/gcp-13.png "gcp-13")     
 看到這個就代表有成功運行囉！
 
 接者輸入以下指令
@@ -271,7 +271,7 @@ python3 -um dopamine.discrete_domains.train \
 其中 base_dir 是保存其檢查點的目錄（可以將其更改為除了/tmp/dopamine以外的其他內容）和tensorboard文件
 gin_files 則是 rainbow_otc.gin 的路徑。
 
-![alt text](gcp-14.png "gcp-14")
+![alt text](image/gcp-14.png "gcp-14")
 
 現在，開始訓練後，可以輸入 (Ctrl + A) 再輸入 (Ctrl +D) 來斷開和這個螢幕的連接，訓練會在後台繼續進行。
 可輸入screen ls來查看目前screen的狀況，只要再輸入 screen -r 即可重新連接回去。
@@ -289,7 +289,7 @@ tensorboard --logdir=/tmp/dopamine
 
 --logdir: 這個路徑就是訓練時所設定的--base_dit
 
-![alt text](gcp-15.png "gcp-15")
+![alt text](image/gcp-15.png "gcp-15")
 
 可從VM執行個體的地方，看到目前VM的外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006（xx為外部ip）
 就可看到Tensorboard的狀況囉！
