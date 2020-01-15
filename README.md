@@ -38,14 +38,14 @@
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
 
 ![alt text](image/gcp-6-1.png "gcp-6-1")  
-等待部屬完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，
-再如圖點選VM，並按編輯，在網路介面中點選icon進行修改，將外部IP從臨時改為「建立IP位址」，
-其他維持不變，名稱隨意命名皆可，接著點選保留
+等待部署完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，        
+再如圖點選VM，並按編輯，在網路介面中點選icon進行修改，將外部IP從臨時改為「建立IP位址」，         
+其他維持不變，名稱隨意命名皆可，接著點選保留。     
 
 ![alt text](image/gcp-6-2.png "gcp-6-2")  
-另外，為使用後續的tensorboard，需要開port突破防火牆，在下方找到網路標記的地方
-如下圖一樣，輸入 "default-allow-internal"
-改完這兩項後，到最底下點選儲存，再接著回到VM執行個體。
+另外，為使用後續的tensorboard，需要開port突破防火牆，在下方找到網路標記的地方，            
+如下圖一樣，輸入 "default-allow-internal"，              
+改完這兩項後，到最底下點選儲存，再接著回到VM執行個體。         
 
 ![alt text](image/gcp-6-3.png "gcp-6-3")
 再如上圖點選SSH連接VM。
@@ -131,8 +131,8 @@ nvidia-smi
 ```
 glxgears
 ```
-若有以成千上萬的幀速率運行 — 這代表我們使用GPU成功將OpenGL圖形渲染到虛擬螢幕上。
-確認完有順利運行後，即可按 Ctrl + C 中斷執行。
+若有以成千上萬的幀速率運行 — 這代表我們使用GPU成功將OpenGL圖形渲染到虛擬螢幕上。       
+確認完有順利運行後，即可按 Ctrl + C 中斷執行。     
 
 
 ## 安裝mini-conda
@@ -147,14 +147,14 @@ bash Miniconda3-latest-Linux-x86_64.sh
 之後一直按enter，照著要求輸入yes後按下enter，   
 接下來待安裝完成後，待再次詢問到輸入yes/no時，輸入yes後即可安裝成功。   
 若不小心尚未輸入yes就按到enter的話，會無法使用conda指令，   
-輸入以下指令後，就可以使用conda指令了！
+輸入以下指令後，就可以使用conda指令了！     
 ```
 export PATH="/root/miniconda3/bin:$PATH"
 ```
 
 ### 使用 mini-conda 模擬環境
 
-安裝完成後，輸入以下指令來創建一個 python3.6 的環境
+安裝完成後，輸入以下指令來創建一個 python3.6 的環境      
 
 ```
 conda create --name otc-env python=3.6
@@ -166,8 +166,8 @@ conda create --name otc-env python=3.6
 ```
 conda activate otc-env
 ```
-若左邊出現(otc-env)就代表順利進到環境內囉！
-要是因conda init問題無法順利activate環境，只要關閉terminal重新ssh連接VM後再activate就可以了！
+若左邊出現(otc-env)就代表順利進到環境內囉！       
+要是因conda init問題無法順利activate環境，只要關閉terminal重新ssh連接VM後再activate就可以了！      
 
 ### 安裝tensorflow
 
@@ -215,7 +215,7 @@ wget https://storage.googleapis.com/obstacle-tower-build/dopamine/dopamine_otc.z
 unzip dopamine_otc.zip
 ```
 
-在zip裡面有兩個檔案：unity_lib.py和rainbow_otc.gin
+在zip裡面有兩個檔案：unity_lib.py和rainbow_otc.gin         
 需將 unity_lib.py 以及 rainbow_otc.gin 放進相對應的資料夾內。
 
 ```
@@ -234,7 +234,7 @@ Runner.evaluation_steps: 經過多少步數後進行評估。
 
 ### 在後台背景進行訓練
 
-由於訓練很可能需要非常多時間（可能需要超過24小時以上）！
+由於訓練很可能需要非常多時間（可能需要超過24小時以上）！        
 因此在後台運行就會比較方便，可以在此期間斷開與VM的SSH連接，只要不要在訓練期間從GCP停止VM執行個體就好。 
 
 ```bash
@@ -268,20 +268,20 @@ python3 -um dopamine.discrete_domains.train \
  --gin_files='dopamine/agents/rainbow/configs/rainbow_otc.gin'
 ```
 
-其中 base_dir 是保存其檢查點的目錄（可以將其更改為除了/tmp/dopamine以外的其他內容）和tensorboard文件
+其中 base_dir 是保存其檢查點的目錄（可以將其更改為除了/tmp/dopamine以外的其他內容）和tensorboard文件，        
 gin_files 則是 rainbow_otc.gin 的路徑。
 
 ![alt text](image/gcp-14.png "gcp-14")
 
-現在，開始訓練後，可以輸入 (Ctrl + A) 再輸入 (Ctrl +D) 來斷開和這個螢幕的連接，訓練會在後台繼續進行。
-可輸入screen ls來查看目前screen的狀況，只要再輸入 screen -r 即可重新連接回去。
+現在，開始訓練後，可以輸入 (Ctrl + A) 再輸入 (Ctrl +D) 來斷開和這個螢幕的連接，訓練會在後台繼續進行。     
+可輸入screen ls來查看目前screen的狀況，只要再輸入 screen -r 即可重新連接回去。   
 
-每完成一段訓練後，就會在base_dir所設定的路徑產生許多checkpoint檔案
+每完成一段訓練後，就會在base_dir所設定的路徑產生許多checkpoint檔案    
 
 ### 從 Tensorboard 監控訓練狀況
-首先，若要監控訓練狀況，需再去編輯創立的VM，於網路介面的外部IP中，選擇建立IP位址。
+首先，若要監控訓練狀況，需再去編輯創立的VM，於網路介面的外部IP中，選擇建立IP位址。   
 
-設定完將 Port 開放後，即可在terminal上輸入已下指令來運行Tensorboard
+設定完將 Port 開放後，即可在terminal上輸入已下指令來運行Tensorboard   
 
 ```bash
 tensorboard --logdir=/tmp/dopamine
@@ -291,8 +291,8 @@ tensorboard --logdir=/tmp/dopamine
 
 ![alt text](image/gcp-15.png "gcp-15")
 
-可從VM執行個體的地方，看到目前VM的外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006（xx為外部ip）
-就可看到Tensorboard的狀況囉！
+可從VM執行個體的地方，看到目前VM的外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006（xx為外部ip）      
+就可看到Tensorboard的狀況囉！     
 
 ![alt text](./examples/images/gcp_tensorboard.png "Tensorboard")
 
