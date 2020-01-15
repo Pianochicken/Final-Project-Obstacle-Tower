@@ -66,9 +66,9 @@ sudo apt install -y xserver-xorg mesa-utils
 
 ![alt text](gcp-8.png "gcp-8")
 
-遇到這個情況時，直接按Enter即可。
-
-初始化 "xorg.conf"
+遇到這個情況時，直接按Enter即可。   
+   
+### 初始化 "xorg.conf"
 ```
 sudo nvidia-xconfig -a --use-display-device=None --virtual=1280x1024
 ```
