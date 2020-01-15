@@ -96,8 +96,7 @@ sudo su
 vim /etc/X11/xorg.conf
 ```
 按 i 即可輸入修改。
-
-在 Section Device 中增加BusID，改成如下圖所示
+在 Section Device 中增加BusID，改成如下圖所示。       
 ![alt text](image/gcp-10.png "gcp-10")
 
 接著將 Section "ServerLayout" & "Screen" 這兩段地方註解掉，如下圖
