@@ -330,7 +330,7 @@ pip install -e .
 選擇適合系統平台的檔案並下載，放在example資料夾內進行解壓縮。
 
 ## Getting Started
-下載run.ipynb檔案 https://docs.google.com/uc?export=download&id=11lx7kmCH3gt-d4r0ub27natNdX_T18-C        
+下載run.ipynb檔案 https://docs.google.com/uc?export=download&id=11PQoucnUCwBcpEUu9M7LBc9i8VvrzYVh        
 並將檔案放入example內，再使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。    
 
 在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中，          
@@ -346,4 +346,5 @@ https://blog.aqnichol.com/2019/07/24/competing-in-the-obstacle-tower-challenge/
 https://blogs.unity3d.com/2019/08/07/announcing-the-obstacle-tower-challenge-winners-and-open-source-release/
 https://storage.googleapis.com/obstacle-tower-build/Obstacle_Tower_Paper_Final.pdf
 https://gitlab.aicrowd.com/wenyuyangpku/obstacle-tower-challenge/tree/master/tmp
+
 
