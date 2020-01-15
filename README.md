@@ -145,8 +145,8 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 之後一直按enter，照著要求輸入yes後按下enter，   
 接下來待安裝完成後，待再次詢問到輸入yes/no時，輸入yes後即可安裝成功。   
-若不小心尚未輸入yes就按到enter的話，會無法使用conda指令，   
-輸入以下指令後，就可以使用conda指令了！     
+
+接著再輸入以下指令，才可使用conda指令。
 ```
 export PATH="/root/miniconda3/bin:$PATH"
 ```
@@ -166,7 +166,8 @@ conda create --name otc-env python=3.6
 conda activate otc-env
 ```
 若左邊出現(otc-env)就代表順利進到環境內囉！       
-要是因conda init問題無法順利activate環境，只要關閉terminal重新ssh連接VM後再activate就可以了！      
+要是因conda init問題無法順利activate環境，就關閉terminal重新ssh連接VM
+sudo su進入root後再activate環境就可以了！      
 
 ### 安裝tensorflow
 
