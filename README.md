@@ -1,4 +1,4 @@
-# Obstacle Tower Environment
+# Final Project Obstacle Tower
 
 ![alt text](banner.jpg "Obstacle Tower")
 
