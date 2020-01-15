@@ -325,8 +325,8 @@ Python dependencies (also in [setup.py](https://github.com/Unity-Technologies/ob
 ### Install the Gym interface
 
 ```bash
-git clone https://github.com/Pianochicken/Final-Project-Obstacle-Tower.git
-cd Final-Project-Obstacle-Tower
+git clone https://github.com/Unity-Technologies/obstacle-tower-env.git
+cd obstacle-tower-env
 pip install -e .
 ```
 
@@ -341,14 +341,19 @@ pip install -e .
 選擇適合系統平台的檔案並下載，放在example資料夾內進行解壓縮。
 
 ## Getting Started
+下載ipynb檔案 https://docs.google.com/uc?export=download&id=11lx7kmCH3gt-d4r0ub27natNdX_T18-C   
+下載已訓練好的checkpoint檔案 https://docs.google.com/uc?export=download&id=1vrMe4oAtr4zjlVA6-jpS0vAKX3VaLIHM   
 
-使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。
+使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。    
 
 在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中，         
-但目前尚不知道該如何將這個訓練完的模型應用在本機端執行...
-
+但在研究許多文獻或分享之後，目前還是不知道該如何將這個訓練完的模型應用在本機端執行...    
 
 
 原始文件可參考：
 https://github.com/Unity-Technologies/obstacle-tower-env
 https://github.com/Unity-Technologies/obstacle-tower-env/blob/master/examples/gcp_training.md
+https://blog.aqnichol.com/2019/07/24/competing-in-the-obstacle-tower-challenge/
+https://blogs.unity3d.com/2019/08/07/announcing-the-obstacle-tower-challenge-winners-and-open-source-release/
+https://storage.googleapis.com/obstacle-tower-build/Obstacle_Tower_Paper_Final.pdf
+
