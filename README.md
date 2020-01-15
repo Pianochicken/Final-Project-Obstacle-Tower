@@ -32,7 +32,7 @@
 
 ![alt text](gcp-5.png "gcp-5")
 接下來要進行設定，基本上只需要更改Framework
-1. 為了符合Tensorflow 1.12，選擇CUDA 9.0的版本（Intel(R) optimized Base (with Intel(R) MKL and CUDA 9.0)）
+1. 我們選擇（TensorFlow Enterprise 1.15）
 2. 勾選安裝NVIDIA GPU driver
 3. 點選部署
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
@@ -171,9 +171,8 @@ conda activate otc-env
 
 ### 安裝tensorflow
 
-由於我們所選擇的VM只有CUDA 0.9，所以必須手動安裝tensorflow
 ```
-pip3 install tensorflow-gpu==1.12
+pip install tensorflow-gpu==1.15
 ```
 
 ### 安裝 Obstacle Tower 環境
@@ -183,11 +182,11 @@ pip3 install tensorflow-gpu==1.12
 ```
 git clone https://github.com/Pianochicken/Final-Project-Obstacle-Tower.git
 cd Final-Project-Obstacle-Tower
-pip3 install ./ 
-cd ../
+pip install ./ 
+cd ..
 ```
 
-接者下載、解壓縮主程式
+接著下載、解壓縮主程式
 
 ```
 wget https://storage.googleapis.com/obstacle-tower-build/v3.1/obstacletower_v3.1_linux.zip
@@ -200,9 +199,8 @@ unzip obstacletower_v3.1_linux.zip
 
 ```
 sudo apt update && sudo apt install cmake zlib1g-dev
-pip3 install absl-py atari-py gin-config==0.1.4 gym opencv-python
+pip install absl-py atari-py gin-config==0.1.4 gym opencv-python
 ```
-
 
 ### 下載Dopamine
 
@@ -236,7 +234,7 @@ Runner.evaluation_steps: 經過多少步數後進行評估。
 
 ### 在後台背景進行訓練
 
-由於訓練很可能需要非常多時間（可能超過24小時）！
+由於訓練很可能需要非常多時間（可能需要超過24小時以上）！
 因此在後台運行就會比較方便，可以在此期間斷開與VM的SSH連接，只要不要在訓練期間從GCP停止VM執行個體就好。 
 
 ```bash
@@ -245,7 +243,7 @@ screen -S dopamine_otc
 
 這個指令會打開一個新的Bash shell。
 
-此時需要在新shell中重新激活虛擬環境。
+此時需要在新shell中重新激活conda環境。
 
 ```bash
 sudo /usr/bin/X :0 &
@@ -265,7 +263,7 @@ cd ./dopamine
 進入到Dopamine Library的根目錄後，運行以下命令開始訓練：
 
 ```
-python -um dopamine.discrete_domains.train \
+python3 -um dopamine.discrete_domains.train \
  --base_dir=/tmp/dopamine \
  --gin_files='dopamine/agents/rainbow/configs/rainbow_otc.gin'
 ```
@@ -276,7 +274,7 @@ gin_files 則是 rainbow_otc.gin 的路徑。
 ![alt text](gcp-14.png "gcp-14")
 
 現在，開始訓練後，可以輸入 (Ctrl + A) 再輸入 (Ctrl +D) 來斷開和這個螢幕的連接，訓練會在後台繼續進行。
-可輸入screen list來查看目前screen的狀況，只要再輸入 screen -r 即可重新連接回去。
+可輸入screen ls來查看目前screen的狀況，只要再輸入 screen -r 即可重新連接回去。
 
 每完成一段訓練後，就會在base_dir所設定的路徑產生許多checkpoint檔案
 
@@ -318,7 +316,7 @@ Python dependencies (also in [setup.py](https://github.com/Unity-Technologies/ob
 ```bash
 git clone https://github.com/Pianochicken/Final-Project-Obstacle-Tower.git
 cd Final-Project-Obstacle-Tower
-pip3 install -e .
+pip install -e .
 ```
 
 ### 下載遊戲環境
