@@ -238,9 +238,9 @@ screen -S dopamine_otc
 
 此時需要在新shell中重新激活conda環境。
 
-```bash
+```
 sudo /usr/bin/X :0 &
-export DISPLAY=:0 
+export DISPLAY=:0
 conda activate otc-env
 ```
 
