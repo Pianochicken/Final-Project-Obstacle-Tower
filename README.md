@@ -85,33 +85,22 @@ nvidia-xconfig --query-gpu-info
 
 
 接下來要針對 xorg.conf 進行修改。
-
-```
-cd /etc/X11
-```
-
 由於修改需最大權限，所以這邊先執行
 
 ```
 sudo su
-
 ```
 
-第一個要修改的地方是新增BusID "X:Y:Z" ，他在 Section “Device”底下， X，Y和Z是上面的 — query-gpu-info命令返回的值。
-
+進入root後，第一個要修改的地方是新增BusID，— query-gpu-info命令返回的值。
 ```
-vim xorg.conf
+vim /etc/X11/xorg.conf
 ```
+按 i 即可輸入修改。
 
-按 i 即可修改。
-
-要將 Section Device 改成如下圖
-
+在 Section Device 中增加BusID，改成如下圖所示
 ![alt text](gcp-10.png "gcp-10")
 
-BusID裡面的數值按照 — query-gpu-info命令，如圖中的進行修改。
-
-接著將 "ServerLayout" & "Screen" 這兩段地方註解掉，如下圖
+接著將 Section "ServerLayout" & "Screen" 這兩段地方註解掉，如下圖
 
 ![alt text](gcp-11.png "gcp-11")
 ![alt text](gcp-12.png "gcp-12")
@@ -119,12 +108,12 @@ BusID裡面的數值按照 — query-gpu-info命令，如圖中的進行修�
 修改完後按 ESC，然後輸入":wq"儲存離開。
 
 
-要啟動Xserver，需要運行以下兩個命令。請注意，如果重新啟動計算機，則需要再次運行這些程序，如果打開新的bash終端，則需要再次運行導出命令。
+要啟動Xserver，需要運行以下兩個命令。      
+請注意，如果重新啟動整個VM，則需要再次運行這些程序，如果打開新的bash終端，則需要再次運行以下指令。
 
 ```
 sudo /usr/bin/X :0 &
 export DISPLAY=:0
-
 ```
 
 接著跑
@@ -135,10 +124,14 @@ nvidia-smi
 
 應該會看到Xorg正在你的GPU上運行。
 
-![alt text](gcp-13.png "gcp-13")
-看到這個代表成功！
+![alt text](gcp-13.png "gcp-13")     
+看到這個就代表有成功運行囉！
 
-為確保一切正常運作，再執行命令glxgears，並確保它以成千上萬的幀速率運行 — 這代表我們使用GPU成功將OpenGL圖形渲染到虛擬螢幕上。
+接者輸入以下指令
+```
+glxgears
+```
+若有以成千上萬的幀速率運行 — 這代表我們使用GPU成功將OpenGL圖形渲染到虛擬螢幕上。
 確認完有順利運行後，即可按 Ctrl + C 中斷執行。
 
 
@@ -151,12 +144,17 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
-之後一直按enter，照著要求輸入yes後按下enter，接下來要注意，請慢慢按enter。
-待再次詢問到輸入yes/no時，輸入yes後即可再一直按enter直到安裝完畢。
+之後一直按enter，照著要求輸入yes後按下enter，   
+接下來待安裝完成後，待再次詢問到輸入yes/no時，輸入yes後即可安裝成功。   
+若不小心尚未輸入yes就按到enter的話，會無法使用conda指令，   
+輸入以下指令後，就可以使用conda指令了！
+```
+export PATH="/root/miniconda3/bin:$PATH"
+```
 
 ### 使用 mini-conda 模擬環境
 
-安裝完程後，輸入以下指令來創建一個 python3.6 的環境
+安裝完成後，輸入以下指令來創建一個 python3.6 的環境
 
 ```
 conda create --name otc-env python=3.6
@@ -168,13 +166,12 @@ conda create --name otc-env python=3.6
 ```
 conda activate otc-env
 ```
-
 若左邊出現(otc-env)就代表順利進到環境內囉！
+要是因conda init問題無法順利activate環境，只要關閉terminal重新ssh連接VM後再activate就可以了！
 
 ### 安裝tensorflow
 
 由於我們所選擇的VM只有CUDA 0.9，所以必須手動安裝tensorflow
-
 ```
 pip3 install tensorflow-gpu==1.12
 ```
