@@ -64,7 +64,7 @@ sudo apt install -y xserver-xorg mesa-utils
 sudo nvidia-xconfig -a --use-display-device=None --virtual=1280x1024
 ```
 
-跑
+再跑
 
 ```
 nvidia-xconfig --query-gpu-info
@@ -135,15 +135,16 @@ bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
 之後一直按enter，照著要求輸入yes後按下enter，   
-接下來一直按enter即可，不須輸入yes。
+待安裝完成後，待再次詢問到輸入yes/no時，再次輸入yes後即可安裝成功。   
 
-待安裝完成後，待再次詢問到輸入yes/no時，輸入yes後即可安裝成功。   
-
-接著再輸入以下指令，才可使用conda指令。
+接著再輸入以下指令，才可使用conda指令。    
 ```
 export PATH="/root/miniconda3/bin:$PATH"
 ```
-
+若剛剛未輸入yes就直接enter，請先執行以下指令。   
+```
+conda init
+```
 ### 使用 mini-conda 模擬環境
 
 安裝完成後，輸入以下指令來創建一個 python3.6 的環境      
@@ -159,8 +160,8 @@ conda create --name otc-env python=3.6
 conda activate otc-env
 ```
 若左邊有出現(otc-env)就代表順利進到環境內囉！       
-要是因conda init問題無法順利activate環境，就關閉terminal重新ssh連接VM
-sudo su進入root後再activate環境就可以了！      
+若有問題，則關閉terminal重新ssh連接VM
+sudo su進入root後再activate環境就會出現了！  
 
 ### 安裝tensorflow
 
@@ -310,19 +311,7 @@ tensorboard --logdir=/tmp/dopamine
 
 ## Part 2 本機端運行主程式：
 
-
-### Requirements
-
-The Obstacle Tower environment runs on Mac OS X, Windows, or Linux.
-
-Python dependencies (also in [setup.py](https://github.com/Unity-Technologies/obstacle-tower-env/blob/master/setup.py)):
-
-* Python 3.5 - 3.7
-* Unity ML-Agents v0.10
-* OpenAI Gym
-
-
-### Install the Gym interface
+### 安裝環境
 
 ```bash
 git clone https://github.com/Unity-Technologies/obstacle-tower-env.git
@@ -341,13 +330,12 @@ pip install -e .
 選擇適合系統平台的檔案並下載，放在example資料夾內進行解壓縮。
 
 ## Getting Started
-下載ipynb檔案 https://docs.google.com/uc?export=download&id=11lx7kmCH3gt-d4r0ub27natNdX_T18-C   
-下載已訓練好的checkpoint檔案 https://docs.google.com/uc?export=download&id=1vrMe4oAtr4zjlVA6-jpS0vAKX3VaLIHM   
+下載run.ipynb檔案 https://docs.google.com/uc?export=download&id=11lx7kmCH3gt-d4r0ub27natNdX_T18-C        
+並將檔案放入example內，再使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。    
 
-使用 Jupyter Notebook 開啟 [run.ipynb檔案](examples/run.ipynb)並執行。    
-
-在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中，         
+在這個github裡面，我已將我之前所訓練出來的檔案放在 Obstacle Tower checkpoint 資料夾中，          
 但在研究許多文獻或分享之後，目前還是不知道該如何將這個訓練完的模型應用在本機端執行...    
+我訓練好的checkpoint檔案 https://docs.google.com/uc?export=download&id=1vrMe4oAtr4zjlVA6-jpS0vAKX3VaLIHM   
 
 
 原始文件可參考：
@@ -356,4 +344,5 @@ https://github.com/Unity-Technologies/obstacle-tower-env/blob/master/examples/gc
 https://blog.aqnichol.com/2019/07/24/competing-in-the-obstacle-tower-challenge/
 https://blogs.unity3d.com/2019/08/07/announcing-the-obstacle-tower-challenge-winners-and-open-source-release/
 https://storage.googleapis.com/obstacle-tower-build/Obstacle_Tower_Paper_Final.pdf
+https://gitlab.aicrowd.com/wenyuyangpku/obstacle-tower-challenge/tree/master/tmp
 
