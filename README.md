@@ -32,12 +32,12 @@
 
 ![alt text](image/gcp-5.png "gcp-5")
 接下來要進行設定，基本上只需要更改Framework
-1. 我們選擇 "Intel(R) optimized Base(with Intel(R) MKL and CUDA 10.0)"
+1. 我們選擇 "Intel(R) optimized Base(with Intel(R) MKL and CUDA 9.0)"
 2. 勾選安裝NVIDIA GPU driver
 3. 點選部署
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
 
-![alt text](image/gcp-6-3.png "gcp-6-3")
+![alt text](image/gcp-6.png "gcp-6")
 等待部署完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，
 再如上圖點選SSH連接VM。
 
