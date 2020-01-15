@@ -32,7 +32,7 @@
 
 ![alt text](image/gcp-5.png "gcp-5")
 接下來要進行設定，基本上只需要更改Framework
-1. 我們選擇（TensorFlow Enterprise 1.15）
+1. 我們選擇 "Intel(R) optimized Base(with Intel(R) MKL and CUDA 10.0)"
 2. 勾選安裝NVIDIA GPU driver
 3. 點選部署
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
@@ -198,7 +198,7 @@ unzip obstacletower_v3.1_linux.zip
 首先安裝 Dopamine的所需套件
 
 ```
-sudo apt update && sudo apt install cmake zlib1g-dev
+apt update && apt install cmake zlib1g-dev
 pip install absl-py atari-py gin-config==0.1.4 gym opencv-python
 ```
 
@@ -257,13 +257,13 @@ conda activate otc-env
 目前已經準備好使用Dopamine進行訓練了！
 
 ```
-cd ./dopamine
+cd dopamine
 ```
 
 進入到Dopamine Library的根目錄後，運行以下命令開始訓練：
 
 ```
-python3 -um dopamine.discrete_domains.train \
+python -um dopamine.discrete_domains.train \
  --base_dir=/tmp/dopamine \
  --gin_files='dopamine/agents/rainbow/configs/rainbow_otc.gin'
 ```
