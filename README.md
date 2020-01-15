@@ -37,8 +37,8 @@
 3. 點選部署
 
 ![alt text](gcp-6.png "gcp-6")
-警告的話是有資源即將被棄用，不過現在運行是ok的。
-接下來就是左邊側欄點選Compute Engine，VM 執行個體，然後點選SSH連接VM。
+警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
+等待部屬完畢後，左邊導覽選單點選Compute Engine，VM 執行個體，然後點選SSH連接VM。
 
 ![alt text](gcp-7.png "gcp-7")
 看到這就代表成功進入囉！
