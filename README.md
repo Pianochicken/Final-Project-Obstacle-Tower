@@ -54,8 +54,8 @@
 看到這就代表成功進入囉！
 
 ## 建立 XServer
-要渲染 Obstacle Tower 環境，需要安裝XServer，以便在運行障礙塔時GPU可以渲染。
-若已為VM配置好GPU，接著按照以下步驟安裝。
+要渲染 Obstacle Tower 環境，需要安裝XServer，以便在運行障礙塔時GPU可以渲染。   
+若已為VM安裝好GPU，則直接按照以下步驟安裝。
 
 ### 下載 Xorg 和 mesa-utils
 
