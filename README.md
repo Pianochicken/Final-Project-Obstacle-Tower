@@ -37,17 +37,8 @@
 3. 點選部署
 警告的話是因為有套件即將被棄用，不過現在運行是沒問題的。
 
-![alt text](image/gcp-6-1.png "gcp-6-1")  
-等待部署完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，        
-再如圖點選VM，並按編輯，在網路介面中點選icon進行修改，將外部IP從臨時改為「建立IP位址」，         
-其他維持不變，名稱隨意命名皆可，接著點選保留。     
-
-![alt text](image/gcp-6-2.png "gcp-6-2")  
-另外，為使用後續的tensorboard，需要開port突破防火牆，在下方找到網路標記的地方，            
-如下圖一樣，輸入 "default-allow-internal"，              
-改完這兩項後，到最底下點選儲存，再接著回到VM執行個體。         
-
 ![alt text](image/gcp-6-3.png "gcp-6-3")
+等待部署完畢後，左邊導覽選單找到Compute Engine，點選 VM 執行個體，
 再如上圖點選SSH連接VM。
 
 ![alt text](image/gcp-7.png "gcp-7")
@@ -144,7 +135,9 @@ bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
 之後一直按enter，照著要求輸入yes後按下enter，   
-接下來待安裝完成後，待再次詢問到輸入yes/no時，輸入yes後即可安裝成功。   
+接下來一直按enter即可，不須輸入yes。
+
+待安裝完成後，待再次詢問到輸入yes/no時，輸入yes後即可安裝成功。   
 
 接著再輸入以下指令，才可使用conda指令。
 ```
@@ -165,7 +158,7 @@ conda create --name otc-env python=3.6
 ```
 conda activate otc-env
 ```
-若左邊出現(otc-env)就代表順利進到環境內囉！       
+若左邊有出現(otc-env)就代表順利進到環境內囉！       
 要是因conda init問題無法順利activate環境，就關閉terminal重新ssh連接VM
 sudo su進入root後再activate環境就可以了！      
 
@@ -279,22 +272,40 @@ gin_files 則是 rainbow_otc.gin 的路徑。
 每完成一段訓練後，就會在base_dir所設定的路徑產生許多checkpoint檔案    
 
 ### 從 Tensorboard 監控訓練狀況
-首先，若要監控訓練狀況，需再去編輯創立的VM，於網路介面的外部IP中，選擇建立IP位址。   
+首先，若要監控訓練狀況，需先進行一些設定
 
-設定完將 Port 開放後，即可在terminal上輸入已下指令來運行Tensorboard   
+![alt text](image/gcp-16.png "gcp-16")  
+到VPC網路的防火牆規則當中，建立新的防火牆規則
+目標標記可自行取名，而底下勾選tcp，
+Tensorboard會使用port 6006，而其他可依需求決定是否開放。
+
+![alt text](image/gcp-17.png "gcp-17")  
+接著要去編輯VM執行個體，如圖點選VM，並按編輯。      
+
+![alt text](image/gcp-18.png "gcp-18")  
+在網路介面中點選icon進行修改，將外部IP從臨時改為「建立IP位址」，             
+其他維持不變，名稱隨意命名皆可，接著點選保留。     
+另外為了使用後續的tensorboard，在下方找到網路標記的地方，              
+輸入你剛剛在防火牆規則的目標標記，在這邊是使用"tmp"，                      
+改完這兩項後，到最底下點選儲存，再接著回到VM執行個體。         
+
+
+### 運行 Tensorboard 
+可從VM執行個體，再開啟一個新的SSH連線。   
+先sudo su 再 activate環境之後
+即可在terminal上輸入以下指令來運行Tensorboard   
 
 ```bash
 tensorboard --logdir=/tmp/dopamine
 ```
-
 --logdir: 這個路徑就是訓練時所設定的--base_dit
 
-![alt text](image/gcp-15.png "gcp-15")
+![alt text](image/gcp-15.png "gcp-15")     
 
-可從VM執行個體的地方，看到目前VM的外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006（xx為外部ip）      
+可從VM執行個體的地方，看到目前VM的外部ip，在瀏覽器當中輸入 xx.xx.xx.xx:6006（xx為VM的外部ip）      
 就可看到Tensorboard的狀況囉！     
 
-![alt text](./examples/images/gcp_tensorboard.png "Tensorboard")
+![alt text](./examples/images/gcp_tensorboard.png "Tensorboard")     
 
 
 ## Part 2 本機端運行主程式：
